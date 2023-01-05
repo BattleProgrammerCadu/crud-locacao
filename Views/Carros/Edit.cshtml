@@ -19,6 +19,25 @@
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="MarcaId" class="control-label">Marca</label>
+                <select name="MarcaId" id="MarcaId">
+                    @foreach (var marca in ViewBag.marcas)
+                    {
+                        <option value="@marca.Id">@marca.Nome</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModeloId" class="control-label">Modelo</label>
+                <select name="ModeloId" id="ModeloId">
+                    @foreach (var modelo in ViewBag.modelos)
+                    {
+                        <option value="@modelo.Id">@modelo.Nome</option>
+                    }
+                </select>
+
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

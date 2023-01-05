@@ -15,11 +15,11 @@ namespace locacao.Models
         public string Nome { get; set; } = default!;
 
         [Required(ErrorMessage = "O Modelo é obrigátrio")]
-        [Column("modelo")]
-        public Modelo Modelo { get; set; } = default!;
+        [Column("modelo", TypeName = "int")]
+        public int ModeloId { get; set; } = default!;
 
-        [Column("marca")]
+        [Column("marca",TypeName = "int")]
         [Required(ErrorMessage = "A marca é obrigátria")]
-        public Marca Marca { get; set; } = default!;
+        public int MarcaId { get; set; } = default!;
     }
 }

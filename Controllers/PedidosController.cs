@@ -29,6 +29,8 @@ namespace locacao.Controllers
         // GET: Pedidos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            ViewBag.clientes = _context.Clientes.ToList();
+            ViewBag.carros = _context.Carros.ToList();
             if (id == null)
             {
                 return NotFound();
@@ -47,6 +49,8 @@ namespace locacao.Controllers
         // GET: Pedidos/Create
         public IActionResult Create()
         {
+            ViewBag.carros = _context.Carros.ToList();
+            ViewBag.clientes = _context.Clientes.ToList();
             return View();
         }
 
@@ -55,7 +59,7 @@ namespace locacao.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DataLocacao,DataEntrega")] Pedido pedido)
+        public async Task<IActionResult> Create([Bind("Id,IdCliente,Carro,DataLocacao,DataEntrega")] Pedido pedido)
         {
             if (ModelState.IsValid)
             {
@@ -69,6 +73,8 @@ namespace locacao.Controllers
         // GET: Pedidos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.carros = _context.Carros.ToList();
+            ViewBag.clientes = _context.Clientes.ToList();
             if (id == null)
             {
                 return NotFound();
@@ -87,7 +93,7 @@ namespace locacao.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,DataLocacao,DataEntrega")] Pedido pedido)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdCliente,Carro,DataLocacao,DataEntrega")] Pedido pedido)
         {
             if (id != pedido.Id)
             {

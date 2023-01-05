@@ -16,11 +16,27 @@
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
-                <label asp-for="Marca" class="control-label">
-               
-                </label>
-                <label asp-for="Modelo" class="control-label"></label>
             </div>
+            <div class="form-group">
+                <label asp-for="MarcaId" class="control-label">Marca</label>
+                <select name="MarcaId" id="MarcaId">
+                    @foreach (var marca in ViewBag.marcas)
+                    {
+                        <option value="@marca.Id">@marca.Nome</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModeloId" class="control-label">Modelo</label>
+                <select name="ModeloId" id="ModeloId">
+                     @foreach(var modelo in ViewBag.modelos)
+                    {
+                        <option value="@modelo.Id">@modelo.Nome</option>
+                    }
+                </select>
+                   
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -31,3 +47,4 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+

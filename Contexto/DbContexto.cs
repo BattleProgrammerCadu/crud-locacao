@@ -11,7 +11,7 @@ namespace locacao.Contexto
         public DbSet<Cliente> Clientes { get; set; } = default!;
         public DbSet<Modelo> Modelos { get; set; } = default!;
         public DbSet<Marca> Marcas { get; set; } = default!;
-        public DbSet<Configuracao> Configuracao { get; set; } = default!;
+        public DbSet<Configuracao> Configuracoes { get; set; } = default!;
         public DbSet<Pedido> Pedidos { get; set; } = default!;
 
     }

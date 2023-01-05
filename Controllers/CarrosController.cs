@@ -47,6 +47,8 @@ namespace locacao.Controllers
         // GET: Carros/Create
         public IActionResult Create()
         {
+            ViewBag.modelos = _context.Modelos.ToList();
+            ViewBag.marcas = _context.Marcas.ToList();
             return View();
         }
 
@@ -55,11 +57,8 @@ namespace locacao.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome")] Carro carro)
+        public async Task<IActionResult> Create([Bind("Id,Nome,ModeloId,MarcaId")] Carro carro)
         {
-            var modelos =  _context.Modelos.ToList();
-            ViewBag.modelos = modelos;
-           
             if (ModelState.IsValid)
             {
                 _context.Add(carro);
@@ -72,6 +71,8 @@ namespace locacao.Controllers
         // GET: Carros/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.modelos = _context.Modelos.ToList();
+            ViewBag.marcas = _context.Marcas.ToList();
             if (id == null)
             {
                 return NotFound();
@@ -90,7 +91,7 @@ namespace locacao.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Carro carro)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,ModeloId,MarcaId")] Carro carro)
         {
             if (id != carro.Id)
             {

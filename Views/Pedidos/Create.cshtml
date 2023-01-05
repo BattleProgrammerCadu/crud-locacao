@@ -13,6 +13,24 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="IdCliente" class="control-label">Cliente</label>
+                <select name="IdCliente" id="IdCliente">
+                    @foreach (var cliente in ViewBag.clientes)
+                    {
+                        <option value="@cliente.Id">@cliente.Nome</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Carro" class="control-label">Carro</label>
+                <select name="Carro" id="Carro">
+                    @foreach (var carro in ViewBag.carros)
+                    {
+                        <option value="@carro.Id">@carro.Nome</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
                 <label asp-for="DataLocacao" class="control-label"></label>
                 <input asp-for="DataLocacao" class="form-control" />
                 <span asp-validation-for="DataLocacao" class="text-danger"></span>

@@ -11,22 +11,22 @@ using locacao.Models;
 
 namespace locacao.Controllers
 {
-    public class ConfiguracaoController : Controller
+    public class ConfiguracoesController : Controller
     {
         private readonly DbContexto _context;
 
-        public ConfiguracaoController(DbContexto context)
+        public ConfiguracoesController(DbContexto context)
         {
             _context = context;
         }
 
-        // GET: Configuracao
+        // GET: Configuracoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Configuracao.ToListAsync());
+            return View(await _context.Configuracoes.ToListAsync());
         }
 
-        // GET: Configuracao/Details/5
+        // GET: Configuracoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,7 +34,7 @@ namespace locacao.Controllers
                 return NotFound();
             }
 
-            var configuracao = await _context.Configuracao
+            var configuracao = await _context.Configuracoes
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (configuracao == null)
             {
@@ -44,13 +44,13 @@ namespace locacao.Controllers
             return View(configuracao);
         }
 
-        // GET: Configuracao/Create
+        // GET: Configuracoes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Configuracao/Create
+        // POST: Configuracoes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -66,7 +66,7 @@ namespace locacao.Controllers
             return View(configuracao);
         }
 
-        // GET: Configuracao/Edit/5
+        // GET: Configuracoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,7 +74,7 @@ namespace locacao.Controllers
                 return NotFound();
             }
 
-            var configuracao = await _context.Configuracao.FindAsync(id);
+            var configuracao = await _context.Configuracoes.FindAsync(id);
             if (configuracao == null)
             {
                 return NotFound();
@@ -82,7 +82,7 @@ namespace locacao.Controllers
             return View(configuracao);
         }
 
-        // POST: Configuracao/Edit/5
+        // POST: Configuracoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -117,7 +117,7 @@ namespace locacao.Controllers
             return View(configuracao);
         }
 
-        // GET: Configuracao/Delete/5
+        // GET: Configuracoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,7 +125,7 @@ namespace locacao.Controllers
                 return NotFound();
             }
 
-            var configuracao = await _context.Configuracao
+            var configuracao = await _context.Configuracoes
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (configuracao == null)
             {
@@ -135,20 +135,20 @@ namespace locacao.Controllers
             return View(configuracao);
         }
 
-        // POST: Configuracao/Delete/5
+        // POST: Configuracoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var configuracao = await _context.Configuracao.FindAsync(id);
-            _context.Configuracao.Remove(configuracao);
+            var configuracao = await _context.Configuracoes.FindAsync(id);
+            _context.Configuracoes.Remove(configuracao);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ConfiguracaoExists(int id)
         {
-            return _context.Configuracao.Any(e => e.Id == id);
+            return _context.Configuracoes.Any(e => e.Id == id);
         }
     }
 }

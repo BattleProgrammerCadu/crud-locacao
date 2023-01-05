@@ -8,11 +8,11 @@ namespace locacao.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; } = default!;
         [Required]
-        [Column("idCliente")]
-        public Cliente IdCliente { get; set; } = default!;
+        [Column("idCliente", TypeName = "int")]
+        public int IdCliente { get; set; } = default!;
         [Required]
-        [Column("carro")]
-        public Carro Carro { get; set; } = default!;
+        [Column("carro",TypeName = "int")]
+        public int Carro { get; set; } = default!;
         [Required]
         [Column("dataLocacao", TypeName ="Date")]
         public DateTime DataLocacao { get; set; } = default!;

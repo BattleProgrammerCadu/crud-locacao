@@ -11,8 +11,8 @@ using locacao.Contexto;
 namespace locacao.Migrations
 {
     [DbContext(typeof(DbContexto))]
-    [Migration("20230104203359_MinhaMigration")]
-    partial class MinhaMigration
+    [Migration("20230104230912_MinhaMigracao")]
+    partial class MinhaMigracao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,10 +28,12 @@ namespace locacao.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("MarcaId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("marca");
 
                     b.Property<int>("ModeloId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("modelo");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -39,10 +41,6 @@ namespace locacao.Migrations
                         .HasColumnName("nome");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MarcaId");
-
-                    b.HasIndex("ModeloId");
 
                     b.ToTable("carros");
                 });
@@ -89,7 +87,7 @@ namespace locacao.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Configuracao");
+                    b.ToTable("Configuracoes");
                 });
 
             modelBuilder.Entity("locacao.Models.Marca", b =>
@@ -130,8 +128,9 @@ namespace locacao.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("CarroId")
-                        .HasColumnType("int");
+                    b.Property<int>("Carro")
+                        .HasColumnType("int")
+                        .HasColumnName("carro");
 
                     b.Property<DateTime>("DataEntrega")
                         .HasColumnType("Date")
@@ -141,54 +140,13 @@ namespace locacao.Migrations
                         .HasColumnType("Date")
                         .HasColumnName("dataLocacao");
 
-                    b.Property<int>("IdClienteId")
-                        .HasColumnType("int");
+                    b.Property<int>("IdCliente")
+                        .HasColumnType("int")
+                        .HasColumnName("idCliente");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CarroId");
-
-                    b.HasIndex("IdClienteId");
-
                     b.ToTable("Pedidos");
-                });
-
-            modelBuilder.Entity("locacao.Models.Carro", b =>
-                {
-                    b.HasOne("locacao.Models.Marca", "Marca")
-                        .WithMany()
-                        .HasForeignKey("MarcaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("locacao.Models.Modelo", "Modelo")
-                        .WithMany()
-                        .HasForeignKey("ModeloId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Marca");
-
-                    b.Navigation("Modelo");
-                });
-
-            modelBuilder.Entity("locacao.Models.Pedido", b =>
-                {
-                    b.HasOne("locacao.Models.Carro", "Carro")
-                        .WithMany()
-                        .HasForeignKey("CarroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("locacao.Models.Cliente", "IdCliente")
-                        .WithMany()
-                        .HasForeignKey("IdClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Carro");
-
-                    b.Navigation("IdCliente");
                 });
 #pragma warning restore 612, 618
         }
